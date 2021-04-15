@@ -20,15 +20,15 @@ class Amazon_user:
         user_list.insert(pos, user)
 
 pos = 0
-user_list = []  #The main list consisting of the user's info.
-character_set = list(string.ascii_letters + string.digits)  #character set stores the set of characters to create an unique id.
+user_list = []                 #The main list consisting of the user's info.
+character_set = list(string.ascii_letters + string.digits)           #character set stores the set of characters to create an unique id.
 
 '''A function to append or insert at a position based on whether the member is a prime member or not.'''
 def appendorins(name, uid, items, isprime):
     global pos
     a = Amazon_user(name, uid, items, isprime)
     if isprime == 0:
-        a.add_prime_member(a)
+        a.add_prime_member(a)  
         pos = pos + 1
         print(f"\nCongratualtions {name}!!, You have been successfully added to our community of prime members.")
     else:
@@ -53,7 +53,7 @@ while add_user == 'y':
 
     is_prime = input("Exciting Deals!!"
                      "\nUnlimited FREE fast delivery, videos, music & more."
-                     "\nDo you wish to become a prime member and enjoy these wonderful offers?? y/n: ")
+                     "\nDo you wish to become a prime member and enjoy these wonderful offers?? y/n: ")  #y denotes Yes while n denotes No.
 
     if is_prime == 'y':
         appendorins(name, user_id, items, 0)   #0 denotes user is a prime member.
