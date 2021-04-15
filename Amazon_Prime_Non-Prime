@@ -1,0 +1,75 @@
+'''
+A python program to simulate the way Amazon differentiates between its prime and non-prime members.
+Author : Chakit Bhandari
+Date : 14-04-2021
+'''
+
+import random
+import string
+class Amazon_user:
+    def __init__(self, name, uid, items, is_prime):
+        self.name = name
+        self.uid = uid
+        self.items = items
+        self.is_prime = is_prime
+
+    def add_non_primeuser(self, user):
+        user_list.append(user)
+
+    def add_prime_member (self, user):
+        user_list.insert(pos, user)
+
+pos = 0
+user_list = []  #The main list consisting of the user's info.
+character_set = list(string.ascii_letters + string.digits)  #character set stores the set of characters to create an unique id.
+
+'''A function to append or insert at a position based on whether the member is a prime member or not.'''
+def appendorins(name, uid, items, isprime):
+    global pos
+    a = Amazon_user(name, uid, items, isprime)
+    if isprime == 0:
+        a.add_prime_member(a)
+        pos = pos + 1
+        print(f"\nCongratualtions {name}!!, You have been successfully added to our community of prime members.")
+    else:
+        a.add_non_primeuser(a)
+
+'''A function to generate a unique user id for each user.'''
+def get_uniqueid ():
+    global character_set
+    userid = ""
+    for i in range(5):
+        userid += random.choice(character_set)  #A unique user id of 5 characters given to each user.
+    return userid
+
+'''Main function.'''
+add_user = 'y'  #'y' denotes yes to add the user while 'n' denotes not to add the user.
+items = []      # A list of items purchased by the user.
+while add_user == 'y':
+    name = input("Please Enter your name: ")
+
+    user_id = get_uniqueid()
+    items = [str(i) for i in input(f"Hello {name}, What are you looking for?? ").split(", ")]
+
+    is_prime = input("Exciting Deals!!"
+                     "\nUnlimited FREE fast delivery, videos, music & more."
+                     "\nDo you wish to become a prime member and enjoy these wonderful offers?? y/n: ")
+
+    if is_prime == 'y':
+        appendorins(name, user_id, items, 0)   #0 denotes user is a prime member.
+    else:
+        appendorins(name, user_id, items, 1)   #1 denotes user is not a prime member.
+
+    print("\nThank you for shopping with Amazon.Your order will be Delivered soon.\nHope to see you soon.")
+    add_user = input("Do you wish to add more user?? y/n: ")
+    print()
+    print()
+
+print("These are the our current set of users: \n")
+for i in user_list:
+    print(i.name, end="  ")
+    if(i.is_prime == 0):
+        print("Prime member")
+    else:
+        print("Non-prime member")
+#End of the Program.
